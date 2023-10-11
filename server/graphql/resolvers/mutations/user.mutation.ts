@@ -20,15 +20,16 @@ import {
 } from '@/server/services/email';
 import { getPayload } from '@/server/services/token';
 import { adminOnly } from '../../wrappers';
+import { getRandomNumber } from '@/utils/generator';
 
 type RegisterUserInput = Prisma.User & { password: string };
 export const registerUser = async (_: unknown, args: RegisterUserInput) => {
   const password = args.password;
   const pwHash = await bcrypt.hash(password, 10);
 
-  isEmail(args.email);
+  if (args.email) isEmail(args.email);
   isPasswordValid(args.password);
-  isNameValid(args.name);
+  isNameValid(args.name || '');
 
   const { password: _p, ...data } = args;
 
@@ -57,7 +58,7 @@ export const login = async (
   ) {
     return { error: 'Email is not verified' };
   }
-  if (await bcrypt.compare(password, user.pwHash)) {
+  if (await bcrypt.compare(password, user.pwHash || '')) {
     const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET as string);
     return {
       user,
@@ -138,3 +139,23 @@ export const updateAdminStatus = adminOnly(
     return updatedUser;
   }
 );
+
+export const sendPhoneOtp = async (
+  _: unknown,
+  { phoneNo }: { phoneNo: string }
+) => {
+  const otp = getRandomNumber();
+  await prisma.user.update({
+    where: { phone: phoneNo },
+    data: {
+      phoneOtp: otp + '',
+      phoneOtpDoC: new Date(),
+    },
+  });
+};
+
+type PhoneLoginArgs = { phoneNo: string; otp: string };
+export const phoneOtpLogin = async (
+  _: unknown,
+  { phoneNo, otp }: PhoneLoginArgs
+) => {};

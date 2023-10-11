@@ -46,6 +46,9 @@ const typeDefs = gql`
     sendVerificationEmail(email: String!): MessageResponse!
     verifyEmail(token: String!): StatusResponse!
     updateAdminStatus(userId: String!, status: Boolean): User
+
+    sendPhoneOtp(phoneNo: String): StatusResponse
+    phoneOtpLogin(otp: String, phoneNo: String): LoginResponse!
   }
 
   ${projectTypedefs}
