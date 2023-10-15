@@ -9,6 +9,8 @@ import {
 import jwt from 'jsonwebtoken';
 import {
   ERROR,
+  INCORRECT_OTP,
+  PHONE_DOES_NOT_EXIST,
   RESET_PASSWORD_RESPONSE,
   SUCCESS,
   URL_EXPIRED_OR_INVALID,
@@ -144,6 +146,10 @@ export const sendPhoneOtp = async (
   _: unknown,
   { phoneNo }: { phoneNo: string }
 ) => {
+  const user = await prisma.user.findFirst({ where: { phone: phoneNo } });
+  if (!user) {
+    throw new Error(PHONE_DOES_NOT_EXIST);
+  }
   const otp = getRandomNumber();
   await prisma.user.update({
     where: { phone: phoneNo },
@@ -158,4 +164,16 @@ type PhoneLoginArgs = { phoneNo: string; otp: string };
 export const phoneOtpLogin = async (
   _: unknown,
   { phoneNo, otp }: PhoneLoginArgs
-) => {};
+) => {
+  const user = await prisma.user.findFirst({
+    where: {
+      phone: phoneNo,
+      phoneOtp: otp,
+    },
+  });
+  if (user) {
+    console.log(user);
+  } else {
+    throw new Error(INCORRECT_OTP);
+  }
+};
