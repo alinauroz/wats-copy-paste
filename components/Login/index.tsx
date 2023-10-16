@@ -1,9 +1,19 @@
+'use client';
+
+import React, { useState } from 'react';
 import '../../styles/login.css';
 import Button from '../Elements/Button';
 import Header from '../Header/Header';
 import Input from '../Elements/Input';
+import Menu from '../Elements/Menu';
 
 const Login = () => {
+  const [loginMenuIndex, setLoginMenuIndex] = useState(0);
+
+  const isEmail = React.useMemo(() => {
+    return loginMenuIndex == 0;
+  }, [loginMenuIndex]);
+
   return (
     <form action="">
       <div className="login">
@@ -11,12 +21,22 @@ const Login = () => {
           <Header />
         </div>
         <div className="login-content">
-          <div className="info">
-            <p className="email">Email</p>
-            <p className="phone">Phone number</p>
+          <div className="hello">
+            <Menu
+              menuItems={['Email', 'Phone']}
+              selected={loginMenuIndex}
+              setSelected={setLoginMenuIndex}
+            />
           </div>
-          <Input placeholder="Email" type="email" />
-          <Input placeholder="Enter your password" type="password" />
+          <Input
+            placeholder={`Enter your ${
+              ['Email', 'Phone Number'][loginMenuIndex]
+            }`}
+            type="text"
+          />
+          {isEmail && (
+            <Input placeholder="Enter your password" type="password" />
+          )}
           <div className="tou-check">
             <input type="checkbox" className="checkbox" />
             <p className="checkbox-text">Keep me signed in</p>

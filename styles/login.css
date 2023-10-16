@@ -9,7 +9,7 @@
   }
 }
 
-.info {
+.info-through {
   display: flex;
   align-items: center;
   gap: 20px;
@@ -18,7 +18,16 @@
   cursor: pointer;
 }
 
-.email {
+/* .email {
+  border-bottom: 2.5px solid #00c489;
+} */
+
+/* .phone { */
+/* border-bottom: 2.5px solid #00c489; */
+/* border-bottom: 2.5px transparent; */
+/* } */
+
+.active {
   border-bottom: 2.5px solid #00c489;
 }
 
