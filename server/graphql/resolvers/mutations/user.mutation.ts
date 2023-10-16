@@ -158,6 +158,14 @@ export const sendPhoneOtp = async (
       phoneOtpDoC: new Date(),
     },
   });
+  const accountSid = process.env.TWILIO_ACCOUNT_SID;
+  const authToken = process.env.TWWILIO_ACCOUNT_TOKEN;
+  const client = require('twilio')(accountSid, authToken);
+  client.messages.create({
+    body: `Your one time password is ${otp}`,
+    to: '+12345678901',
+    //from: '+12345678901',
+  });
 };
 
 type PhoneLoginArgs = { phoneNo: string; otp: string };

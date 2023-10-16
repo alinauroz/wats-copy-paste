@@ -24,7 +24,7 @@ model User {
   pwHash              String?   @default("")
 
   phoneOtp            String?   @default("")
-  phoneOtpDoC         DateTime
+  phoneOtpDoC         DateTime?
 
   isAdmin             Boolean   @default(false)
 }
