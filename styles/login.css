@@ -4,10 +4,6 @@
   background-color: #f0f0f0;
   height: 100vh;
 
-  @media only screen and (max-width: 768px) {
-    width: 100%;
-  }
-
   @media only screen and (max-width: 576px) {
     width: 100%;
   }

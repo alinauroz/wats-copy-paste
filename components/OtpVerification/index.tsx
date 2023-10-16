@@ -7,14 +7,16 @@ import Button from '../Elements/Button';
 const index = () => {
   return (
     <div className="container-verification">
-      <Header />
+      <div className="header">
+        <Header />
+      </div>
       <div className="verification">
         <div className="heading">Otp Verification!</div>
         <div>
           <Input placeholder="Enter your OTP code" type="email" />
         </div>
         <p className="send-again">
-          <a href="#">Send again!</a>
+          <a href="#">send again!</a>
         </p>
         <div className="verification-btn">
           <Button text="Click Here To Verify" />
