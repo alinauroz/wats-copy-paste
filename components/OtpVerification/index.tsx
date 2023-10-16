@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../styles/emailVerification.css';
+import '../../styles/verification.css';
 import Input from '../Elements/Input';
 import Header from '../Header/Header';
 import Button from '../Elements/Button';
@@ -11,12 +11,12 @@ const index = () => {
       <div className="verification">
         <div className="heading">Otp Verification!</div>
         <div>
-          <Input placeholder="Enter your otp code here" type="email" />
+          <Input placeholder="Enter your OTP code" type="email" />
         </div>
+        <p className="send-again">
+          <a href="#">Send again!</a>
+        </p>
         <div className="verification-btn">
-          {/* <p>
-            <a href="#">Send OTP</a>
-          </p> */}
           <Button text="Click Here To Verify" />
         </div>
       </div>

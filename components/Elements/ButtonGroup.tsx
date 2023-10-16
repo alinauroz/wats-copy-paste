@@ -15,9 +15,7 @@ const Button = ({ text, style, type, icon }: Props) => {
       <button className="btn-group" style={style} type={type}>
         {text}
       </button>
-
       <Image src={icon} alt="" className="dropdown" />
-      {/* <div className="dropdown">&#129171;</div> */}
     </div>
   );
 };
