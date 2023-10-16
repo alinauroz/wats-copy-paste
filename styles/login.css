@@ -17,16 +17,6 @@
   font-weight: 800;
   cursor: pointer;
 }
-
-/* .email {
-  border-bottom: 2.5px solid #00c489;
-} */
-
-/* .phone { */
-/* border-bottom: 2.5px solid #00c489; */
-/* border-bottom: 2.5px transparent; */
-/* } */
-
 .active {
   border-bottom: 2.5px solid #00c489;
 }
