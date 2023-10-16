@@ -1,0 +1,10 @@
+.logo-panel {
+  display: flex;
+  align-items: start;
+  gap: 30px;
+}
+
+.menu {
+  margin-top: 2px;
+  cursor: pointer;
+}
