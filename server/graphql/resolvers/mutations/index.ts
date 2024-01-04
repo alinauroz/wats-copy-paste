@@ -1,1 +1,1 @@
-export * as userMutations from './user.mutation';
+export * as userMutations from './bin.mutation';

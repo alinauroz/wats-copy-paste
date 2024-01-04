@@ -1,1 +1,1 @@
-export * as userQueries from './user.queries';
+export * as userQueries from './bin.queries';
