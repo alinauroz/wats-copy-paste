@@ -19,8 +19,8 @@ const handler = startServerAndCreateNextHandler<NextRequest>(server, {
     if (token) {
       const { id } = getPayload({ token });
       if (id) {
-        user = await prisma.user.findUnique({ where: { id } });
-        isAdmin = user?.isAdmin || user?.email === process.env.ADMIN_EMAIL;
+        user = null;
+        isAdmin = false;
       }
     }
     return { user, isAdmin };
