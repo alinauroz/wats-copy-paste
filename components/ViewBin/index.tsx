@@ -1,3 +1,4 @@
+import React from 'react';
 import { gql, useQuery } from 'urql';
 
 const GET_BIN = gql`
@@ -12,6 +13,10 @@ const GET_BIN = gql`
 `;
 
 function ViewBin({ binId }: { binId: string }) {
+  React.useEffect(() => {
+    document.title = 'View Bin';
+  });
+
   const [{ fetching, data }] = useQuery({
     query: GET_BIN,
     variables: {
