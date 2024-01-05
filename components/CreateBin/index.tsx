@@ -111,7 +111,7 @@ function CreateBin() {
               type="button"
               className="bg-gray-200 px-8 py-2 rounded-lg text-lg font-semibold hover:bg-gray-400 cursor-pointer"
               onClick={submit}
-              value={'Create'}
+              value={fetching ? '...' : 'Create'}
             />
           </div>
         </div>
