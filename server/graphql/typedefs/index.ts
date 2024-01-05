@@ -8,7 +8,7 @@ const typeDefs = gql`
     id: ID
     i_id: String
     text: String
-    createOn: Date
+    createdOn: Date
   }
 
   type Query {
