@@ -37,18 +37,12 @@ function ViewBin({ binId }: { binId: string }) {
         </div>
         <div className="my-8">
           <textarea
-            // rows={15}
-            // cols={120}
+            disabled
             className="border-none w-full h-96 text-white text-lg rounded-lg p-4 focus:outline-[#0f3955] focus:border-none bg-[#0f3955]"
-            // className='lg:w-[1000px] h-[200px] border-none text-white rounded-lg p-3 focus:outline-[#0f3955] focus:border-none bg-[#0f3955]'
             placeholder={data?.bin?.text}
           />
         </div>
       </div>
-
-      {/* <div className="h-96 bg-[#0f3955] text-white rounded mt-10 p-4">
-        {data?.bin?.text}
-      </div> */}
     </div>
   );
 }
