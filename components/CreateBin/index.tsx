@@ -16,6 +16,10 @@ const CREATE_BIN = gql`
 `;
 
 function CreateBin() {
+  React.useEffect(() => {
+    document.title = 'Create Bin';
+  });
+
   const [texts, setTexts] = useState<string[]>([]);
   const [{ fetching, data }, createBin] = useMutation(CREATE_BIN);
   const [value, setValue] = useState('');
@@ -32,6 +36,32 @@ function CreateBin() {
         router.push(`/b/${data?.createBin?.[0]?.i_id}`);
       }
     });
+  };
+
+  const handleDownload = () => {
+    const currentProtocol = window.location.protocol;
+    const currentDomain = window.location.hostname;
+    const currentPort = window.location.port;
+
+    const appurl =
+      currentPort && currentPort != '80'
+        ? `${currentProtocol}://${currentDomain}:${currentPort}/b`
+        : `${currentProtocol}://${currentDomain}/b`;
+
+    const fileContent =
+      'Link,Text\r\n' +
+      (data?.createBin?.map((bin: any) => {
+        return `${appurl}/${bin.i_id},${bin.text}`;
+      })).join('\r\n');
+    const blob = new Blob([fileContent], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'output.csv';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
   };
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -53,11 +83,13 @@ function CreateBin() {
   };
 
   return (
-    <div>
+    <div className="">
       {/* Main Part */}
-      <div>
-        <div>
+      <div className="flex flex-col py-10 w-full px-5 md:px-48">
+        <div className="">
+          <p className="text-white py-2 text-3xl font-semibold">Create Bin</p>
           <textarea
+            className="w-full h-96 text-white rounded-lg p-4 focus:outline-[#0f3955] bg-[#0f3955]"
             placeholder="Your content"
             onChange={(e) => {
               setTexts([e.target.value]);
@@ -66,35 +98,54 @@ function CreateBin() {
             value={value}
           />
         </div>
-        <div>
-          Or choose a file to bulk paste |{' '}
-          <input type="file" onChange={handleFileChange} />
-        </div>
-        <div>
-          <input
-            type="button"
-            className="bg-gray-200 mt-2 p-4"
-            onClick={submit}
-            value={'Create'}
-          />
+        <div className="flex flex-col py-3 lg:gap-2 gap-5">
+          <div className="text-white text-lg flex flex-col md:flex-row gap-2 items-start">
+            <p>Or choose a file to bulk paste |</p>
+            <span>
+              <input
+                type="file"
+                onChange={handleFileChange}
+                className="rounded"
+              />
+            </span>
+          </div>
+          <div>
+            <input
+              type="button"
+              className="bg-gray-200 px-7 py-1 md:px-8 md:py-2 rounded-lg text-lg font-semibold hover:bg-gray-400 cursor-pointer"
+              onClick={submit}
+              value={fetching ? '...' : 'Create'}
+            />
+          </div>
         </div>
       </div>
       {data?.createBin?.length > 1 && (
-        <>
-          <p>Links:</p>
+        <div className="px-5 md:px-48 my-8">
           <p>
-            DELETE THIS MESSAGE: LINKS ONLY APPEAR WHEN U BULK ADD USING FILE
+            <span className="text-2xl text-white font-bold my-2">Links</span>
+            <span
+              className="float-right p-2 rounded bg-white font-bold cursor-pointer"
+              onClick={handleDownload}
+            >
+              Download as CSV
+            </span>
           </p>
           <ul>
-            {data?.createBin?.map((bin: { i_id: string }) => {
+            {data?.createBin?.map((bin: { text: string; i_id: string }) => {
               return (
-                <li key={bin.i_id}>
-                  <Link href={`/b/${bin.i_id}`}>{bin.i_id}</Link>
+                <li key={bin.i_id} className="text-white my-1">
+                  <Link href={`/b/${bin.i_id}`}>
+                    {bin.i_id}
+                    <span className="mx-2">-</span>
+                    <span className="opacity-60">
+                      {bin.text.substring(0, 100)} ...
+                    </span>
+                  </Link>
                 </li>
               );
             })}
           </ul>
-        </>
+        </div>
       )}
     </div>
   );

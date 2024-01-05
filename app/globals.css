@@ -7,3 +7,11 @@
 * {
   font-family: Nunito, sans-serif;
 }
+
+body{
+  background-color: #061c2b;
+}
+
+textarea {
+  resize: none;
+}
