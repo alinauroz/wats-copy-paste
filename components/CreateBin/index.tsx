@@ -34,6 +34,32 @@ function CreateBin() {
     });
   };
 
+  const handleDownload = () => {
+    const currentProtocol = window.location.protocol;
+    const currentDomain = window.location.hostname;
+    const currentPort = window.location.port;
+
+    const appurl =
+      currentPort && currentPort != '80'
+        ? `${currentProtocol}://${currentDomain}:${currentPort}/b`
+        : `${currentProtocol}://${currentDomain}/b`;
+
+    const fileContent =
+      'Link,Text\r\n' +
+      (data?.createBin?.map((bin: any) => {
+        return `${appurl}/${bin.i_id},${bin.text}`;
+      })).join('\r\n');
+    const blob = new Blob([fileContent], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'output.csv';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
+
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const fileInput = event.target;
     const file = fileInput.files?.[0];
@@ -92,7 +118,15 @@ function CreateBin() {
       </div>
       {data?.createBin?.length > 1 && (
         <div className="px-5 md:px-48 my-8">
-          <p className="text-2xl text-white font-bold my-2">Links</p>
+          <p>
+            <span className="text-2xl text-white font-bold my-2">Links</span>
+            <span
+              className="float-right p-2 rounded bg-white font-bold cursor-pointer"
+              onClick={handleDownload}
+            >
+              Download as CSV
+            </span>
+          </p>
           <ul>
             {data?.createBin?.map((bin: { text: string; i_id: string }) => {
               return (
