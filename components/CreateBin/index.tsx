@@ -16,6 +16,10 @@ const CREATE_BIN = gql`
 `;
 
 function CreateBin() {
+  React.useEffect(() => {
+    document.title = 'Create Bin';
+  });
+
   const [texts, setTexts] = useState<string[]>([]);
   const [{ fetching, data }, createBin] = useMutation(CREATE_BIN);
   const [value, setValue] = useState('');
