@@ -91,21 +91,24 @@ function CreateBin() {
         </div>
       </div>
       {data?.createBin?.length > 1 && (
-        <>
-          <p>Links:</p>
-          <p>
-            DELETE THIS MESSAGE: LINKS ONLY APPEAR WHEN U BULK ADD USING FILE
-          </p>
+        <div className="px-5 md:px-48 my-8">
+          <p className="text-2xl text-white font-bold my-2">Links</p>
           <ul>
-            {data?.createBin?.map((bin: { i_id: string }) => {
+            {data?.createBin?.map((bin: { text: string; i_id: string }) => {
               return (
-                <li key={bin.i_id}>
-                  <Link href={`/b/${bin.i_id}`}>{bin.i_id}</Link>
+                <li key={bin.i_id} className="text-white my-1">
+                  <Link href={`/b/${bin.i_id}`}>
+                    {bin.i_id}
+                    <span className="mx-2">-</span>
+                    <span className="opacity-60">
+                      {bin.text.substring(0, 100)} ...
+                    </span>
+                  </Link>
                 </li>
               );
             })}
           </ul>
-        </>
+        </div>
       )}
     </div>
   );
