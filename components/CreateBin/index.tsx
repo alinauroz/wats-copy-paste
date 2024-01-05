@@ -5,7 +5,7 @@ import { gql, useMutation } from 'urql';
 const CREATE_BIN = gql`
   mutation Mutation($texts: [String!]) {
     createBin(texts: $texts) {
-      createOn
+      createdOn
       i_id
       id
       text
