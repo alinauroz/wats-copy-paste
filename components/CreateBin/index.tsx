@@ -34,6 +34,32 @@ function CreateBin() {
     });
   };
 
+  const handleDownload = () => {
+    const currentProtocol = window.location.protocol;
+    const currentDomain = window.location.hostname;
+    const currentPort = window.location.port;
+
+    const appurl =
+      currentPort && currentPort != '80'
+        ? `${currentProtocol}://${currentDomain}:${currentPort}/b`
+        : `${currentProtocol}://${currentDomain}/b`;
+
+    const fileContent =
+      'Link,Text\r\n' +
+      (data?.createBin?.map((bin: any) => {
+        return `${appurl}/${bin.i_id},${bin.text}`;
+      })).join('\r\n');
+    const blob = new Blob([fileContent], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'output.csv';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
+
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const fileInput = event.target;
     const file = fileInput.files?.[0];
@@ -60,7 +86,6 @@ function CreateBin() {
           <p className="text-white py-2 text-3xl font-semibold">Create Bin</p>
           <textarea
             className="w-full h-96 text-white rounded-lg p-4 focus:outline-[#0f3955] bg-[#0f3955]"
-            // className='lg:w-[1000px] h-[200px] border-none text-white rounded-lg p-3 focus:outline-[#0f3955] focus:border-none bg-[#0f3955]'
             placeholder="Your content"
             onChange={(e) => {
               setTexts([e.target.value]);
@@ -85,27 +110,38 @@ function CreateBin() {
               type="button"
               className="bg-gray-200 px-7 py-1 md:px-8 md:py-2 rounded-lg text-lg font-semibold hover:bg-gray-400 cursor-pointer"
               onClick={submit}
-              value={'Create'}
+              value={fetching ? '...' : 'Create'}
             />
           </div>
         </div>
       </div>
       {data?.createBin?.length > 1 && (
-        <>
-          <p>Links:</p>
+        <div className="px-5 md:px-48 my-8">
           <p>
-            DELETE THIS MESSAGE: LINKS ONLY APPEAR WHEN U BULK ADD USING FILE
+            <span className="text-2xl text-white font-bold my-2">Links</span>
+            <span
+              className="float-right p-2 rounded bg-white font-bold cursor-pointer"
+              onClick={handleDownload}
+            >
+              Download as CSV
+            </span>
           </p>
           <ul>
-            {data?.createBin?.map((bin: { i_id: string }) => {
+            {data?.createBin?.map((bin: { text: string; i_id: string }) => {
               return (
-                <li key={bin.i_id}>
-                  <Link href={`/b/${bin.i_id}`}>{bin.i_id}</Link>
+                <li key={bin.i_id} className="text-white my-1">
+                  <Link href={`/b/${bin.i_id}`}>
+                    {bin.i_id}
+                    <span className="mx-2">-</span>
+                    <span className="opacity-60">
+                      {bin.text.substring(0, 100)} ...
+                    </span>
+                  </Link>
                 </li>
               );
             })}
           </ul>
-        </>
+        </div>
       )}
     </div>
   );
