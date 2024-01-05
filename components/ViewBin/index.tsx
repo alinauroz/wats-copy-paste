@@ -27,9 +27,24 @@ function ViewBin({ binId }: { binId: string }) {
 
   return (
     <div className="w-10/12 mx-auto">
-      <div className="h-96 bg-gray-200 rounded mt-10 p-4">
-        {data?.bin?.text}
+      <div className="">
+        <p className="text-white py-2 text-3xl font-semibold mt-10">View Bin</p>
+        <input
+          className="border-none text-white w-full text-lg rounded-lg p-4 focus:outline-[#0f3955] focus:border-none bg-[#0f3955] mb-2"
+          placeholder="Add sample ad here"
+        />
+        <textarea
+          // rows={15}
+          // cols={120}
+          className="border-none w-full h-96 text-white text-lg rounded-lg p-4 focus:outline-[#0f3955] focus:border-none bg-[#0f3955]"
+          // className='lg:w-[1000px] h-[200px] border-none text-white rounded-lg p-3 focus:outline-[#0f3955] focus:border-none bg-[#0f3955]'
+          placeholder={data?.bin?.text}
+        />
       </div>
+
+      {/* <div className="h-96 bg-[#0f3955] text-white rounded mt-10 p-4">
+        {data?.bin?.text}
+      </div> */}
     </div>
   );
 }
