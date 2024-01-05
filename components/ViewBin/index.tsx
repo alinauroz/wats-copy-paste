@@ -34,6 +34,7 @@ function ViewBin({ binId }: { binId: string }) {
           placeholder="Add sample ad here"
         />
         <textarea
+          disabled
           // rows={15}
           // cols={120}
           className="border-none w-full h-96 text-white text-lg rounded-lg p-4 focus:outline-[#0f3955] focus:border-none bg-[#0f3955]"

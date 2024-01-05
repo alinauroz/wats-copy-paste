@@ -55,11 +55,11 @@ function CreateBin() {
   return (
     <div className="">
       {/* Main Part */}
-      <div className="flex flex-col py-10 px-5 md:px-48">
+      <div className="flex flex-col py-10 w-full px-5 md:px-48">
         <div className="">
           <p className="text-white py-2 text-3xl font-semibold">Create Bin</p>
           <textarea
-            className="border-none w-full h-96 text-white rounded-lg p-4 focus:outline-[#0f3955] focus:border-none bg-[#0f3955]"
+            className="w-full h-96 text-white rounded-lg p-4 focus:outline-[#0f3955] bg-[#0f3955]"
             // className='lg:w-[1000px] h-[200px] border-none text-white rounded-lg p-3 focus:outline-[#0f3955] focus:border-none bg-[#0f3955]'
             placeholder="Your content"
             onChange={(e) => {
@@ -69,8 +69,8 @@ function CreateBin() {
             value={value}
           />
         </div>
-        <div className="flex flex-col py-3 gap-2">
-          <div className="text-white text-lg flex gap-2 items-center">
+        <div className="flex flex-col py-3 lg:gap-2 gap-5">
+          <div className="text-white text-lg flex flex-col md:flex-row gap-2 items-start">
             <p>Or choose a file to bulk paste |</p>
             <span>
               <input
@@ -83,7 +83,7 @@ function CreateBin() {
           <div>
             <input
               type="button"
-              className="bg-gray-200 px-8 py-2 rounded-lg text-lg font-semibold hover:bg-gray-400 cursor-pointer"
+              className="bg-gray-200 px-7 py-1 md:px-8 md:py-2 rounded-lg text-lg font-semibold hover:bg-gray-400 cursor-pointer"
               onClick={submit}
               value={'Create'}
             />
