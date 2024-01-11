@@ -1,5 +1,6 @@
 import React from 'react';
 import { gql, useQuery } from 'urql';
+import Linkify from 'react-linkify';
 
 const GET_BIN = gql`
   query Query($binId: ID!) {
@@ -33,15 +34,14 @@ function ViewBin({ binId }: { binId: string }) {
   return (
     <div className="w-10/12 mx-auto">
       <div className="">
-        <p className="text-white py-2 text-3xl font-semibold mt-10">View Bin</p>
         <div className="my-8 flex justify-center items-center">
           <img
             src={`https://www.wordstream.com/wp-content/uploads/2021/07/banner-ads-examples-ncino.jpg`}
             className="w-full md:w-4/5"
           />
         </div>
-        <div className="w-full h-96 text-white text-lg rounded-lg p-4 bg-[#0f3955]">
-          {data?.bin?.text}
+        <div className="w-full h-96 text-lg text-white rounded-lg p-4 bg-[#0f3955]">
+          <WatsLinkify text={data?.bin?.text} />
         </div>
       </div>
     </div>
@@ -49,3 +49,24 @@ function ViewBin({ binId }: { binId: string }) {
 }
 
 export default ViewBin;
+
+export function WatsLinkify({ text }: { text: string }) {
+  return (
+    <Linkify
+      componentDecorator={(decoratedHref, decoratedText, key) => {
+        return (
+          <a
+            href={decoratedHref}
+            key={key}
+            target="_blank"
+            className="text-[#3366CC] underline"
+          >
+            {decoratedText}
+          </a>
+        );
+      }}
+    >
+      {text}
+    </Linkify>
+  );
+}
