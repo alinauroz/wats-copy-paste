@@ -1583,6 +1583,13 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-linkify@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.npmjs.org/@types/react-linkify/-/react-linkify-1.0.4.tgz"
+  integrity sha512-NOMw4X3kjvjY0lT5kXQdxZCXpPNi2hOuuqG+Kz+5EOQpi9rDUJJDitdE1j2JRNmrTnNIjrLnYG0HKyuOWN/uKA==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react@*", "@types/react@18.2.23":
   version "18.2.23"
   resolved "https://registry.npmjs.org/@types/react/-/react-18.2.23.tgz"
@@ -4250,6 +4257,13 @@ lines-and-columns@^1.1.6:
   resolved "https://registry.npmjs.org/lines-and-columns/-/lines-and-columns-1.2.4.tgz"
   integrity sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==
 
+linkify-it@^2.0.3:
+  version "2.2.0"
+  resolved "https://registry.npmjs.org/linkify-it/-/linkify-it-2.2.0.tgz"
+  integrity sha512-GnAl/knGn+i1U/wjBz3akz2stz+HrHLsxMwHQGofCDfPvlf+gDKN58UtfmUquTY4/MXeE2x7k19KQmeoZi94Iw==
+  dependencies:
+    uc.micro "^1.0.1"
+
 lint-staged@^14.0.1:
   version "14.0.1"
   resolved "https://registry.npmjs.org/lint-staged/-/lint-staged-14.0.1.tgz"
@@ -5227,6 +5241,14 @@ react-is@^16.13.1:
   resolved "https://registry.npmjs.org/react-is/-/react-is-16.13.1.tgz"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
+react-linkify@^1.0.0-alpha:
+  version "1.0.0-alpha"
+  resolved "https://registry.npmjs.org/react-linkify/-/react-linkify-1.0.0-alpha.tgz"
+  integrity sha512-7gcIUvJkAXXttt1fmBK9cwn+1jTa4hbKLGCZ9J1U6EOkyb2/+LKL1Z28d9rtDLMnpvImlNlLPdTPooorl5cpmg==
+  dependencies:
+    linkify-it "^2.0.3"
+    tlds "^1.199.0"
+
 react@18.2.0:
   version "18.2.0"
   resolved "https://registry.npmjs.org/react/-/react-18.2.0.tgz"
@@ -5929,6 +5951,11 @@ titleize@^3.0.0:
   resolved "https://registry.npmjs.org/titleize/-/titleize-3.0.0.tgz"
   integrity sha512-KxVu8EYHDPBdUYdKZdKtU2aj2XfEx9AfjXxE/Aj0vT06w2icA09Vus1rh6eSu1y01akYg6BjIK/hxyLJINoMLQ==
 
+tlds@^1.199.0:
+  version "1.248.0"
+  resolved "https://registry.npmjs.org/tlds/-/tlds-1.248.0.tgz"
+  integrity sha512-noj0KdpWTBhwsKxMOXk0rN9otg4kTgLm4WohERRHbJ9IY+kSDKr3RmjitaQ3JFzny+DyvBOQKlFZhp0G0qNSfg==
+
 tmp@^0.0.33:
   version "0.0.33"
   resolved "https://registry.npmjs.org/tmp/-/tmp-0.0.33.tgz"
@@ -6076,6 +6103,11 @@ ua-parser-js@^1.0.35:
   version "1.0.36"
   resolved "https://registry.npmjs.org/ua-parser-js/-/ua-parser-js-1.0.36.tgz"
   integrity sha512-znuyCIXzl8ciS3+y3fHJI/2OhQIXbXw9MWC/o3qwyR+RGppjZHrM27CGFSKCJXi2Kctiz537iOu2KnXs1lMQhw==
+
+uc.micro@^1.0.1:
+  version "1.0.6"
+  resolved "https://registry.npmjs.org/uc.micro/-/uc.micro-1.0.6.tgz"
+  integrity sha512-8Y75pvTYkLJW2hWQHXxoqRgV7qb9B+9vFEtidML+7koHUFapnVJAZ6cKs+Qjz5Aw3aZWHMC6u0wJE3At+nSGwA==
 
 unbox-primitive@^1.0.2:
   version "1.0.2"
