@@ -89,7 +89,7 @@ function CreateBin() {
         <div className="">
           <p className="text-white py-2 text-3xl font-semibold">Create Bin</p>
           <textarea
-            className="w-full h-96 text-white rounded-lg p-4 focus:outline-[#0f3955] bg-[#0f3955]"
+            className="whitespace-pre-wrap w-full h-96 text-white rounded-lg p-4 focus:outline-[#0f3955] bg-[#0f3955]"
             placeholder="Your content"
             onChange={(e) => {
               setTexts([e.target.value]);
