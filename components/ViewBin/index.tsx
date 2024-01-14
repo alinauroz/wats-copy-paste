@@ -42,7 +42,7 @@ function ViewBin({ binId }: { binId: string }) {
             className="w-full md:w-4/5"
           />
         </div>
-        <div className="whitespace-pre-wrap w-full h-96 text-white text-lg my-8 rounded-lg p-4 bg-[#0f3955]">
+        <div className="whitespace-pre-wrap w-full min-h-[400px] text-white text-lg my-8 rounded-lg p-4 bg-[#0f3955]">
           <WatsLinkify text={data?.bin?.text} />
         </div>
       </div>
