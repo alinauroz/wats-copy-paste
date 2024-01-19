@@ -14,16 +14,35 @@ const GET_BIN = gql`
 `;
 
 function ViewBin({ binId }: { binId: string }) {
-  React.useEffect(() => {
-    document.title = 'View Bin';
-  });
-
   const [{ fetching, data }] = useQuery({
     query: GET_BIN,
     variables: {
       binId: binId,
     },
   });
+
+  React.useEffect(() => {
+    document.title = 'View Bin';
+    (window as any).atOptions = {
+      key: '1831de1efd564c07fa4da4f551a48208',
+      format: 'iframe',
+      height: 60,
+      width: 468,
+      params: {},
+    };
+    const adScript = document.createElement('script');
+    adScript.type = 'text/javascript';
+    adScript.async = true;
+    adScript.src =
+      '//doomdefender.com/1831de1efd564c07fa4da4f551a48208/invoke.js';
+    const container = document.getElementById('ad-container');
+    document.body;
+    container?.appendChild(adScript);
+    return () => {
+      document.body;
+      container?.removeChild(adScript);
+    };
+  }, [fetching]);
 
   if (fetching) {
     return (
@@ -36,12 +55,10 @@ function ViewBin({ binId }: { binId: string }) {
   return (
     <div className="w-10/12 mx-auto">
       <div className="">
-        <div className="my-8 flex justify-center items-center">
-          <img
-            src={`https://www.wordstream.com/wp-content/uploads/2021/07/banner-ads-examples-ncino.jpg`}
-            className="w-full md:w-4/5"
-          />
-        </div>
+        <div
+          className="my-8 flex justify-center items-center"
+          id="ad-container"
+        ></div>
         <div className="whitespace-pre-wrap w-full min-h-[400px] text-white text-lg my-8 rounded-lg p-4 bg-[#0f3955]">
           <WatsLinkify text={data?.bin?.text} />
         </div>
