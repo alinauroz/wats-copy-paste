@@ -124,7 +124,7 @@ function CreateBin() {
           <p>
             <span className="text-2xl text-[#eee] font-bold my-2">Links</span>
             <span
-              className="float-right p-2 rounded bg-[#262626] font-bold cursor-pointer"
+              className="float-right p-2 rounded text-white bg-[#262626] font-bold hover:bg-[#353535] cursor-pointer"
               onClick={handleDownload}
             >
               Download as CSV
