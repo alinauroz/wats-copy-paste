@@ -71,7 +71,7 @@ export const getInternalId = async (text: string) => {
       '8',
       '9',
       '-',
-      '+',
+      '_',
     ];
 
     let finalHash = '';
