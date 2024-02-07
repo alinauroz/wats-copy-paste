@@ -8,10 +8,11 @@
   font-family: Nunito, sans-serif;
 }
 
-body{
-  background-color: #061c2b;
+body {
+  background-color: #1c1c1c;
 }
 
 textarea {
   resize: none;
+  outline: none;
 }

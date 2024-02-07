@@ -46,7 +46,7 @@ function ViewBin({ binId }: { binId: string }) {
 
   if (fetching) {
     return (
-      <div className="flex justify-center items-center h-96 text-white font-bold">
+      <div className="flex justify-center text-[#eee] items-center h-96 text-white font-bold">
         Loading ...
       </div>
     );
@@ -59,7 +59,7 @@ function ViewBin({ binId }: { binId: string }) {
           className="my-8 flex justify-center items-center"
           id="ad-container"
         ></div>
-        <div className="whitespace-pre-wrap w-full min-h-[400px] text-white text-lg my-8 rounded-lg p-4 bg-[#0f3955]">
+        <div className="whitespace-pre-wrap w-full min-h-[400px] text-[#eee] text-lg my-8 rounded-lg p-4 bg-[#262626]">
           <WatsLinkify text={data?.bin?.text} />
         </div>
       </div>
