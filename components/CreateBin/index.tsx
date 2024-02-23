@@ -45,8 +45,8 @@ function CreateBin() {
 
     const appurl =
       currentPort && currentPort != '80'
-        ? `${currentProtocol}://${currentDomain}:${currentPort}/b`
-        : `${currentProtocol}://${currentDomain}/b`;
+        ? `${currentProtocol}//${currentDomain}:${currentPort}/b`
+        : `${currentProtocol}//${currentDomain}/b`;
 
     const fileContent =
       'Link,Text\r\n' +
